@@ -17,9 +17,12 @@ alias sudo='sudo '
 alias fastfetch='clear; fastfetch'
 alias py='python'
 alias mkdir='mkdir -p'
-alias ssh='kitten ssh'
+#alias ssh='kitten ssh'
 
 export EDITOR=nvim
+export ANDROID_HOME=$HOME/Android/Sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 PS1='[\u@\h \W]\$ '
 

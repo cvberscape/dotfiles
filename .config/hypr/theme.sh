@@ -50,7 +50,7 @@ else
 fi
 
 # set discord theme by launching pywal-discord
-bash $HOME/.config/hypr/pywal-discord.sh
+#bash $HOME/.config/hypr/pywal-discord.sh
 
 # set starship theme
 python3 .config/hypr/update_starship.py
@@ -64,9 +64,12 @@ gsettings set org.gnome.desktop.wm.preferences theme "$GTK_THEME_NAME"
 killall waybar
 waybar &
 
+gsettings set org.gnome.desktop.interface color-scheme "prefer-$THEME_MODE"
 # set wallpaper to persist after reboot
 cat >"$STARTUP_DIR" <<EOF
 exec-once = swww init --no-cache && swww img "$WALLPAPER_PATH"
+exec-once = gsettings set org.gnome.desktop.interface color-scheme "prefer-$THEME_MODE"
+EOF
 EOF
 
 # set obsidian theme
