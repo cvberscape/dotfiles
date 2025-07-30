@@ -25,7 +25,8 @@ theme="/home/cvberscape/.cache/wal/colors-ghostty"
 window-padding-x = 2
 gtk-custom-css = ./tabs.css
 gtk-single-instance = true
-
+selection-background = "#44475a"
+selection-foreground = "#f8f8f2"
 #
 # # Spacing around the equals sign does not matter.
 # # All of these are identical:
@@ -45,11 +46,13 @@ keybind = ctrl+t=new_tab
 keybind = ctrl+w=close_tab
 keybind = ctrl+right=next_tab
 keybind = ctrl+left=previous_tab
-keybind = ctrl+q=close_window
 keybind = shift+left=esc:B
 keybind = shift+right=esc:F
+keybind = ctrl+q=close_window
+keybind = ctrl+ä=reload_config
 
-keybind = ctrl+å=reload_config
+keybind = ctrl+l=next_tab
+keybind = ctrl+h=previous_tab
 #
 # # Some config options have unique syntaxes for their value,
 # # which is explained in the docs for that config option.

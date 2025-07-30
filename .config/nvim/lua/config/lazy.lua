@@ -32,6 +32,24 @@ require("lazy").setup({
   },
   --  install = { colorscheme = { "tokyonight", "habamax" } },
   { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
+  {
+    "folke/snacks.nvim",
+    opts = {
+      picker = {
+        hidden = true,
+        ignored = true,
+        sources = {
+          files = {
+            hidden = true,
+            ignored = true,
+            -- exclude = {
+            -- "**/.git/*",
+            --},
+          },
+        },
+      },
+    },
+  },
   checker = { enabled = true }, -- automatically check for plugin updates
   performance = {
     rtp = {

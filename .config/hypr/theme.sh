@@ -61,13 +61,13 @@ GTK_THEME_NAME="pywal_theme"
 oomox-cli "$PYWAL_COLORS" --output "$GTK_THEME_NAME"
 gsettings set org.gnome.desktop.interface gtk-theme "$GTK_THEME_NAME"
 gsettings set org.gnome.desktop.wm.preferences theme "$GTK_THEME_NAME"
+gsettings set org.gnome.desktop.interface color-scheme "prefer-$THEME_MODE"
 killall waybar
 waybar &
 
-gsettings set org.gnome.desktop.interface color-scheme "prefer-$THEME_MODE"
 # set wallpaper to persist after reboot
 cat >"$STARTUP_DIR" <<EOF
-exec-once = swww init --no-cache && swww img "$WALLPAPER_PATH"
+exec-once = swww img "$WALLPAPER_PATH"
 exec-once = gsettings set org.gnome.desktop.interface color-scheme "prefer-$THEME_MODE"
 EOF
 EOF

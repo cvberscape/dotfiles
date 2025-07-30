@@ -17,15 +17,20 @@ alias sudo='sudo '
 alias fastfetch='clear; fastfetch'
 alias py='python'
 alias mkdir='mkdir -p'
-#alias ssh='kitten ssh'
+alias tauri='WEBKIT_DISABLE_DMABUF_RENDERER=1 bun tauri dev'
+alias cd="z"
 
 export EDITOR=nvim
 export ANDROID_HOME=$HOME/Android/Sdk
 export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 
-PS1='[\u@\h \W]\$ '
+export JAVA_HOME=/usr/lib/jvm/java-17-openjdk
+export PATH=$JAVA_HOME/bin:$PATH
 
 eval "$(starship init bash)"
+eval "$(zoxide init bash)"
+
+PS1='[\u@\h \W]\$ '
 
 fastfetch
