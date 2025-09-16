@@ -39,7 +39,7 @@ mainbox {
     orientation:                 horizontal;
     children:                    [  "inputbar" , "listbox" ];
     background-color:            transparent;
-    background-image:            url("~/Downloads/pix/black.png", height);
+    background-image:            url("~/imgrepo/pix/black.png", height);
 }
 
 
@@ -49,7 +49,6 @@ inputbar {
     width:                       672px;
     children:                    [ "mode-switcher" , "entry" ];
     background-color:            transparent;
-    background-image:            url("~/Downloads/pix/oni2.jpg", width);
 }
 entry {
     enabled:                     false;
@@ -84,7 +83,7 @@ listbox {
     spacing:                     0px;
     padding:                     20px;
     children:                    [ "listview" ];
-    background-image:            url("~/Downloads/pix/black.png", height);
+    background-image:            url("~/imgrepo/pix/black.png", height);
 }
 listview {
     enabled:                     true;

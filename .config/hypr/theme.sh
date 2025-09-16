@@ -1,5 +1,5 @@
 #!/bin/bash
-WALLPAPER_DIR="$HOME/Downloads/wallpaper"
+WALLPAPER_DIR="$HOME/imgrepo/wallpaper"
 STARTUP_DIR="$HOME/.config/hypr/wallpaper.conf"
 OBSIDIAN_THEME_DIR="$HOME/obisidan/.obsidian/themes/Minimal"
 STYLE_SETTINGS_DIR="$HOME/obsidian/.obsidian/plugins/obsidian-style-settings"
