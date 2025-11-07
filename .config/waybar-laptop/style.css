@@ -1,0 +1,134 @@
+* {
+  border-radius: 0;
+  font-size: 13px;
+  min-height: 0;
+  margin-left: 4;
+  margin-right: 4;
+}
+
+tooltip {
+  background: @theme_base_color;
+  border: 2px solid @theme_fg_color;
+  border-radius: 1px;
+}
+
+#waybar {
+  background: transparent;
+  color: @theme_text_color;
+  opacity: 0.7;
+  font-family: "Hack Nerd Font";
+}
+
+#workspaces button {
+  background: @theme_base_color;
+  padding: 0 0px;
+  color: @theme_text_color;
+}
+/* Fix: active workspace doesn't show up */
+/* #workspaces button.focused { */
+#workspaces button.focused {
+  background: @theme_base_color;
+  color: @theme_fg_color;
+}
+#workspaces button.active {
+  background: @theme_base_color;
+  color: @theme_fg_color;
+}
+
+#custom-powermenu,
+#cpu,
+#temperature,
+#memory,
+#workspaces,
+#battery,
+#clock,
+#window,
+#pulseaudio,
+#custom-updates,
+#network {
+  padding: 4px 8px;
+  background-color: #303643;
+  border-radius: 30px;
+  margin: 6px 4px;
+}
+
+#window {
+  background: @theme_base_color;
+  opacity: 0.7;
+  color: @theme_text_color;
+}
+
+#workspaces {
+  background: @theme_base_color;
+  opacity: 0.7;
+}
+
+#tray {
+  background: transparent;
+  color: @theme_text_color;
+  margin-left: 4px;
+}
+
+#custom-updates {
+  color: #1788e4;
+}
+
+#custom-powermenu {
+  color: #e06c75;
+  padding-right: 11px;
+  margin-right: 8px;
+}
+
+#scratchpad {
+  color: #cffafe;
+  padding-right: 4px;
+  padding-left: 4px;
+}
+
+#pulseaudio {
+  background: @theme_base_color;
+  opacity: 0.7;
+  color: @theme_text_color;
+  padding-right: 14px;
+}
+
+#cpu {
+  background: @theme_base_color;
+  opacity: 0.7;
+  color: @theme_text_color;
+}
+
+#battery {
+  background: @theme_base_color;
+  opacity: 0.7;
+  color: @theme_text_color;
+  padding-right: 14px;
+}
+#temperature {
+  background: @theme_base_color;
+  opacity: 0.7;
+  color: @theme_text_color;
+}
+
+#memory {
+  background: @theme_base_color;
+  opacity: 0.7;
+  color: @theme_text_color;
+}
+
+#network {
+  color: #c678dd;
+  min-width: 200px;
+}
+
+#clock {
+  background: @theme_base_color;
+  opacity: 0.7;
+  color: @theme_text_color;
+  margin-left: 8px;
+  border-radius: 17;
+
+  /* opacity: 0.7; */
+  /* font-size: 18px; */
+}
+
