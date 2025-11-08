@@ -27,6 +27,9 @@ gtk-custom-css = ./tabs.css
 gtk-single-instance = true
 selection-background = "#44475a"
 selection-foreground = "#f8f8f2"
+
+command = /usr/bin/nu
+
 #
 # # Spacing around the equals sign does not matter.
 # # All of these are identical:
