@@ -70,7 +70,9 @@ cat >"$STARTUP_DIR" <<EOF
 exec-once = swww img "$WALLPAPER_PATH"
 exec-once = gsettings set org.gnome.desktop.interface color-scheme "prefer-$THEME_MODE"
 EOF
-EOF
+
+# reload ghostty theme
+killall -SIGUSR2 ghostty
 
 # set obsidian theme
 COLORS_JSON="$HOME/.cache/wal/colors.json"
