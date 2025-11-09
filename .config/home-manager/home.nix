@@ -16,7 +16,6 @@
     vesktop
     heroic
     catppuccin-cursors.mochaSky
-    #code-cursor-fhs
     code-cursor
     claude-code
   ];
