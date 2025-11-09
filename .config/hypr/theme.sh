@@ -61,7 +61,7 @@ GTK_THEME_NAME="pywal_theme"
 oomox-cli "$PYWAL_COLORS" --output "$GTK_THEME_NAME"
 gsettings set org.gnome.desktop.interface gtk-theme "$GTK_THEME_NAME"
 gsettings set org.gnome.desktop.wm.preferences theme "$GTK_THEME_NAME"
-gsettings set org.gnome.desktop.interface color-scheme "prefer-$THEME_MODE"
+gsettings set org.gnome.desktop.interface color-scheme "default"
 killall waybar
 waybar &
 
