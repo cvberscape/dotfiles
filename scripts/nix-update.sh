@@ -1,3 +1,0 @@
-#!/bin/bash
-nix-channel --update
-home-manager switch

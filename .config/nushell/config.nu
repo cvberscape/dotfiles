@@ -204,6 +204,45 @@ $env.config.color_config.string = {||
 $env.config.color_config.row_index = "light_yellow_bold"
 $env.config.color_config.header = "light_yellow_bold"
 
+# Clean nix generations and garbage collect
+def nix-clean [] {
+    home-manager expire-generations 0
+    nix-collect-garbage -d
+}
+
+# Update nix channels and switch home-manager
+def nix-update [] {
+    nix-channel --update
+    home-manager switch
+}
+
+# Sync git repos
+def sync-repos [] {
+    let base_dir = ($env.HOME | path join "code")
+    mut failures = []
+
+    for dir in (ls $base_dir | where type == "dir") {
+        let git_path = ($dir.name | path join ".git")
+        if ($git_path | path exists) {
+            let repo_name = ($dir.name | path basename)
+            print $"Updating ($repo_name)"
+            let result = (git -C $dir.name pull --ff-only | complete)
+            if $result.exit_code != 0 {
+                $failures ++= [$repo_name]
+            }
+        }
+    }
+
+    if ($failures | is-empty) {
+        print "\nAll repositories updated successfully."
+    } else {
+        print "\n===== SUMMARY OF FAILURES ====="
+        for repo in $failures {
+            print $"($repo) needs manual intervention"
+        }
+    }
+}
+
 do --env {
   def prompt-header [
     --left-char: string
