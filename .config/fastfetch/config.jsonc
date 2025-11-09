@@ -54,6 +54,7 @@
       "type": "wm",
       "key": "   WM",
       "keyColor": "green",
+      "format": "{pretty-name}",
     },
     {
       "type": "terminal",
