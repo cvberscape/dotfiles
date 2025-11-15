@@ -9,3 +9,13 @@ store file lists all explicitly installed packages via yay
 ```nu
 yay -Qeq | save -f store
 ```
+
+## usage
+
+symlink files
+
+```nu
+stow -t $env.HOME .
+```
+
+install packages from store
