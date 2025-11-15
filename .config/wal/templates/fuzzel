@@ -1,0 +1,12 @@
+[colors]
+background={background}dd
+text={foreground}ff
+prompt={foreground}ff
+placeholder={color8}ff
+input={foreground}ff
+match={color1}ff
+selection={color15}20
+selection-text={background}ff
+selection-match={color1}ff
+counter={color8}ff
+border={color4}ff

@@ -1,136 +1,212 @@
-// Config //
-configuration {
-    modi:                        "drun,filebrowser,window,run";
-    show-icons:                  true;
-    display-drun:                " ";
-    display-run:                 " ";
-    display-filebrowser:         " ";
-    display-window:              " ";
-    drun-display-format:         "{name}";
-    window-format:               "{w}{t}";
-    font:                        "CaskaydiaCove Nerd Font 10";
-icon-theme: "Papirus";
-}
-
 @theme "~/.cache/wal/colors-rofi-dark.rasi"
- 
-// Main //
+
+* {
+  background-color: @background;
+  text-color:       @foreground;
+  font: "JetBrainsMono Bold 10";
+}
+
+configuration {
+    show-icons: true;
+    icon-theme: "Papirus";
+    drun-show-actions: false;
+    drun-display-format: "{name}";
+}
+
+element-icon {
+    size: 32px;
+    background-color: inherit;
+    border-radius: inherit;
+    margin: 0px 10px 0px 0px;
+}
+
 window {
-    /*
-    height:                      590px;
-    width:                       900px;
- */
-    height:                      563px;
-    width:                       950px;
-    transparency:                "real";
-    fullscreen:                  false;
-    enabled:                     true;
-    cursor:                      "default";
-    spacing:                     0px;
-    padding:                     0px;
-    border:                      2px;
-    border-radius:               7px;
-    border-color:                @select-bg;
-    background-color:            transparent;
+  padding: 1em;
+  border-color: @background;
+  border: 5px;
+  border-radius: 10px;
+  background-color: @background;
 }
+
 mainbox {
-    enabled:                     true;
-    spacing:                     0px;
-    orientation:                 horizontal;
-    children:                    [  "inputbar" , "listbox" ];
-    background-color:            transparent;
-    background-image:            url("~/imgrepo/pix/black.png", height);
+  spacing: 0px;
+  children: [message, inputbar, listview];
 }
 
+message {
+    enabled: true;
+    margin: 0px 100px;
+    padding: 15px;
+    border: 0px solid;
+    border-radius: 15px;
+    border-color: inherit;
+    background-color: inherit;
+    text-color: inherit;
+    size: 400em;
+}
 
-// Inputs //
+textbox {
+    background-color: inherit;
+    text-color: inherit;
+    vertical-align: 0.5;
+    horizontal-align: 0.5;
+    placeholder-color: inherit;
+    blink: true;
+    markup: true;
+    size: 400em;
+    font: "CaskaydiaCove Nerd Font 15";
+}
+
+error-message {
+    padding: 12px;
+    border: 0px solid;
+    border-radius: 0px;
+    border-color: inherit;
+    background-color: inherit;
+    text-color: inherit;
+}
+
+element {
+  background: transparent;
+  children: [element-icon, element-text];
+}
+element, element-text, element-icon, button {
+    cursor: pointer;
+}
+
 inputbar {
-    enabled:                     true;
-    width:                       672px;
-    children:                    [ "mode-switcher" , "entry" ];
-    background-color:            transparent;
-}
-entry {
-    enabled:                     false;
-}
-
-
-// Modes //
-mode-switcher{
-    orientation:                 vertical;
-    enabled:                     true;
-    spacing:                     0px;
-    width:                       68px;
-    padding:                     160px 10px 160px 10px;
-    spacing:                     25px;
-    background-color:            transparent;
-}
-button {
-    cursor:                      pointer;
-    border-radius:               50px;
-    background-color:            @active-foreground;
-    text-color:                  @main-fg;
-}
-button selected {
-    //background-color:            @main-fg;//
-    background-color:           @active-background;
-    text-color:                  @main-bg;
+  margin: 0px 10px;
+  spacing: 0.4em;
+  border-color: @background;
+  border: 5px;
+  background-color: @background;
+  children: [entry, overlay, case-indicator];
 }
 
+listview, message {
+  padding: 0.5em;
+  border-color: @background;
+  border: 5px;
+  border-radius: 10px;
+  background-color: @background;
 
-// Lists //
-listbox {
-    spacing:                     0px;
-    padding:                     20px;
-    children:                    [ "listview" ];
-    background-image:            url("~/imgrepo/pix/black.png", height);
+  columns: 1;
+  lines: 8;
 }
 listview {
-    enabled:                     true;
-    columns:                     1;
-    cycle:                       true;
-    dynamic:                     true;
-    scrollbar:                   false;
-    layout:                      vertical;
-    reverse:                     false;
-    fixed-height:                true;
-    fixed-columns:               true;
-    cursor:                      "default";
-    background-color:            transparent;
-    text-color:                  @main-fg;
+  border: 0px 5px 5px 5px;
+  border-radius: 10px;
+  spacing: 10px;
+  background-color: @background;
+  border-color: @background;
+  scrollbar: true;
 }
 
-
-// Elements //
 element {
-    enabled:                     true;
-    spacing:                     20px;
-    padding:                     7px;
-    border-radius:               20px;
-    cursor:                      pointer;
-    background-color:            @active-background;
-    text-color:                  @main-fg;
-}
-@media(max-aspect-ratio: 1.8) {
-    element {
-        orientation:             horizontal;
-    }
-}
-element selected.normal {
-    background-color:            @select-bg;
-    text-color:                  @select-fg;
-}
-element-icon {
-    size:                        48px;
-        horizontal-align:            0.0;
-    cursor:                      inherit;
-    background-color:            transparent;
-    text-color:                  inherit;
+    border: 5px;
+    border-radius: 5px;
+    padding: 5px;
+    border-color: @background;
 }
 element-text {
-    vertical-align:              0.5;
-    horizontal-align:            0.0;
-    cursor:                      inherit;
-    background-color:            transparent;
-    text-color:                  inherit;
+    background-color: @background;
+    text-color: @foreground;
+    font: "CaskaydiaCove Nerd Font";
 }
+
+/* Normal States */
+element.normal.normal {
+    background-color: @normal-background;
+    text-color: @normal-foreground;
+}
+element.normal.urgent {
+    background-color: @urgent-background;
+    text-color: @urgent-foreground;
+}
+element.normal.active {
+    background-color: @active-background;
+    text-color: @active-foreground;
+}
+
+/* Selected States */
+element.selected.normal {
+    background-color: @selected-normal-background;
+    border-color: @selected-normal-background;
+    text-color: @selected-normal-foreground;
+}
+element.selected.urgent {
+    background-color: @selected-urgent-background;
+    border-color: @selected-urgent-background;
+    text-color: @selected-urgent-foreground;
+}
+element.selected.active {
+    background-color: @selected-active-background;
+    border-color: @selected-active-background;
+    text-color: @selected-active-foreground;
+}
+
+/* Alternate States */
+element.alternate.normal {
+    background-color: @alternate-normal-background;
+    text-color: @alternate-normal-foreground;
+}
+element.alternate.urgent {
+    background-color: @alternate-urgent-background;
+    text-color: @alternate-urgent-foreground;
+}
+element.alternate.active {
+    background-color: @alternate-active-background;
+    text-color: @alternate-active-foreground;
+}
+
+element-text.selected.normal,
+element-text.selected.urgent,
+element-text.selected.active {
+    background-color: @selected-normal-background;
+    border-color: @selected-normal-background;
+    text-color: @background;
+    font: "JetBrains Mono Medium";
+}
+
+scrollbar {
+    width: 4px;
+    border: 0;
+    handle-color: @selected-normal-background;
+    handle-width: 8px;
+    padding: 0;
+}
+
+mode-switcher {
+    border: 0px;
+    spacing: 0px;
+    expand: true;
+}
+
+button {
+    text-color: @normal-foreground;
+    border: 0px 0px 5px;
+    border-color: @background;
+    border-radius: 10px 10px 0 0;
+    background-color: @background;
+    horizontal-align: 0.5;
+}
+button selected.normal {
+    text-color: @selected-normal-foreground;
+    margin: 0px;
+    padding: 0px;
+    border: 5px;
+    border-color: @background;
+    border-radius: 10px;
+    background-color: @selected-normal-background;
+}
+
+entry {
+    placeholder: "Search here";
+    placeholder-color: @foreground;
+    border-color: @selected-active-background;
+    background-color: @selected-active-background;
+    border: 10px;
+    border-radius: 2px;
+    text-color: @foreground;
+}
+

@@ -8,7 +8,7 @@ alias c='clear'
 alias e='yazi'
 alias l='eza -lh  --icons=auto'
 alias ls='eza --icons=auto'
-alias lsp='eza -a --icons=auto'
+alias lsh='eza -a --icons=auto'
 alias ll='eza -lha --icons=auto --sort=name --group-directories-first'
 alias ld='eza -lhD --icons=auto'
 alias grep='grep --color=auto'
@@ -18,7 +18,12 @@ alias fastfetch='clear; fastfetch'
 alias py='python'
 alias mkdir='mkdir -p'
 alias tauri='WEBKIT_DISABLE_DMABUF_RENDERER=1 bun tauri dev'
+alias tauribuild='bun tauri build --no-bundle'
 alias cd="z"
+alias android="bun expo run:android"
+
+#export PATH="$HOME/.local/bin:$PATH"
+#export WATCHMAN_NO_SPAWN=1
 
 export EDITOR=nvim
 export ANDROID_HOME=$HOME/Android/Sdk

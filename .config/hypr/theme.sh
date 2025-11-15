@@ -1,5 +1,5 @@
 #!/bin/bash
-WALLPAPER_DIR="$HOME/imgrepo/wallpaper"
+WALLPAPER_DIR="$HOME/Downloads/wallpaper"
 STARTUP_DIR="$HOME/.config/hypr/wallpaper.conf"
 OBSIDIAN_THEME_DIR="$HOME/obisidan/.obsidian/themes/Minimal"
 STYLE_SETTINGS_DIR="$HOME/obsidian/.obsidian/plugins/obsidian-style-settings"
@@ -50,8 +50,43 @@ else
 fi
 
 # set discord theme by launching pywal-discord
-#bash $HOME/.config/hypr/pywal-discord.sh
+bash $HOME/.config/hypr/pywal-discord.sh
 
+json="$HOME/.cache/wal/colors.json"
+theme="$HOME/.config/vesktop/themes/system24.css"
+out="$HOME/.config/vesktop/themes/system24-wal.css"
+
+# Extract pywal colors
+bg=$(jq -r '.special.background' "$json")
+fg=$(jq -r '.special.foreground' "$json")
+c0=$(jq -r '.colors.color0' "$json")
+c1=$(jq -r '.colors.color1' "$json")
+c2=$(jq -r '.colors.color2' "$json")
+c3=$(jq -r '.colors.color3' "$json")
+c4=$(jq -r '.colors.color4' "$json")
+
+# Replace relevant color definitions with pywal equivalents
+sed -e "s|oklch(19% 0 0)|$bg|g" \
+  -e "s|oklch(23% 0 0)|$bg|g" \
+  -e "s|oklch(27% 0 0)|$bg|g" \
+  -e "s|oklch(31% 0 0)|$bg|g" \
+  -e "s|oklch(95% 0 0)|$fg|g" \
+  -e "s|oklch(85% 0 0)|$fg|g" \
+  -e "s|oklch(75% 0 0)|$fg|g" \
+  -e "s|oklch(60% 0 0)|$fg|g" \
+  -e "s|oklch(40% 0 0)|$fg|g" \
+  -e "s|oklch(75% 0.13 0)|$c0|g" \
+  -e "s|oklch(70% 0.13 0)|$c0|g" \
+  -e "s|oklch(65% 0.13 0)|$c0|g" \
+  -e "s|oklch(75% 0.12 170)|$c4|g" \
+  -e "s|oklch(70% 0.12 170)|$c4|g" \
+  -e "s|oklch(75% 0.11 215)|$c2|g" \
+  -e "s|oklch(70% 0.11 215)|$c2|g" \
+  -e "s|oklch(80% 0.12 90)|$c3|g" \
+  -e "s|oklch(75% 0.12 90)|$c3|g" \
+  -e "s|oklch(75% 0.12 310)|$c1|g" \
+  -e "s|oklch(70% 0.12 310)|$c1|g" \
+  "$theme" >"$out"
 # set starship theme
 python3 .config/hypr/update_starship.py
 
@@ -71,7 +106,6 @@ exec-once = swww img "$WALLPAPER_PATH"
 exec-once = gsettings set org.gnome.desktop.interface color-scheme "prefer-$THEME_MODE"
 EOF
 
-# reload ghostty theme
 killall -SIGUSR2 ghostty
 
 # set obsidian theme
