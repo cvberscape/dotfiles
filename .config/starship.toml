@@ -3,14 +3,14 @@ format="$directory$git_branch$character"
 
 # Prompt symbols 
 [character]
-success_symbol = "[🞈](#c0c5cd bold)"
-error_symbol = "[🞈](#354753)"
-vicmd_symbol = "[🞈](#515B69)"
+success_symbol = "[🞈](#cd9fc0 bold)"
+error_symbol = "[🞈](#5A5D62)"
+vicmd_symbol = "[🞈](#BA4546)"
 
 [directory]
-format = "[]($style)[(bg:#354753 fg:#515B69)$path](bg:#354753 fg:#c0c5cd)[ ]($style)"
-style = "fg:#354753"
+format = "[]($style)[(bg:#5A5D62 fg:#BA4546)$path](bg:#5A5D62 fg:#cd9fc0)[ ]($style)"
+style = "fg:#5A5D62"
 
 [git_branch]
-format = "[]($style)[[ ](bg:#354753 fg:#c0c5cd bold)$branch](bg:#354753 fg:#515B69)[ ]($style)"
-style = "fg:#354753"
+format = "[]($style)[[ ](bg:#5A5D62 fg:#cd9fc0 bold)$branch](bg:#5A5D62 fg:#BA4546)[ ]($style)"
+style = "fg:#5A5D62"

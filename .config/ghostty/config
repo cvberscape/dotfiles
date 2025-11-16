@@ -27,6 +27,9 @@ gtk-custom-css = ./tabs.css
 gtk-single-instance = true
 selection-background = "#44475a"
 selection-foreground = "#f8f8f2"
+font-feature = -calt
+font-feature = -dlig
+font-feature = -liga
 
 command = /usr/bin/nu
 
