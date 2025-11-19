@@ -2,13 +2,8 @@
 
 My personal dotfiles, adapts entire system theme depending on pywal colorscheme via useful scripts
 
-## store
-
-store file lists all explicitly installed packages via yay
-
-```nu
-yay -Qeq | save -f store
-```
+> [!NOTE]
+> all commands are for nushell
 
 ## usage
 
@@ -19,3 +14,16 @@ stow -t $env.HOME .
 ```
 
 install packages from store
+
+```nu
+open store | ^yay -S --needed -
+
+```
+
+## store
+
+store file lists all explicitly installed packages via yay
+
+```nu
+yay -Qeq | save -f store
+```
