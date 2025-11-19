@@ -32,6 +32,7 @@ alias lsh = ls -a
 alias grep = ^grep --color=auto
 alias vim = nvim
 alias py = python
+alias code = cursor
 
 def --wrapped sudo [...rest: string] {
     let new_args = ($rest | each {|arg| 
