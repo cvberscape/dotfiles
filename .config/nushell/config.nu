@@ -41,7 +41,6 @@ def --wrapped sudo [...rest: string] {
     ^sudo ...$new_args
 }
 
-
 def tauri [] {
   with-env [WEBKIT_DISABLE_DMABUF_RENDERER: "1"] {
     bun tauri dev
@@ -53,7 +52,6 @@ def tauribuild [] {
     bun tauri build
   }
 }
-
 
 export-env {
   $env.EDITOR = "nvim"
