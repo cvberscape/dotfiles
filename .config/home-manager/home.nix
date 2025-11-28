@@ -24,7 +24,7 @@
     catppuccin-cursors.mochaSky
     code-cursor
     claude-code
-    #    carapace
+    #carapace
   ];
 
   home.file = {

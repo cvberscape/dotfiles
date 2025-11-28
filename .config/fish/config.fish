@@ -21,6 +21,10 @@ if status --is-interactive
     set -gx JAVA_HOME /usr/lib/jvm/java-17-openjdk
     set -gx PATH $JAVA_HOME/bin $PATH
 
+    bind -M default \cy commandline-copy # normal mode
+    bind -M insert \cy commandline-copy # insert mode
+    bind -M visual \cy commandline-copy # visual mode
+
     function sudo
         set cmd $argv
         if test $cmd[1] = vim
@@ -38,4 +42,51 @@ if status --is-interactive
     clear
     command fastfetch
 
+end
+
+# clean nix generations and garbage collect
+function nix-clean
+    home-manager expire-generations 0
+    and nix-collect-garbage -d
+end
+
+# update nix channels and switch home-manager
+function nix-update
+    nix-channel --update
+    and home-manager switch
+end
+
+# sync repos
+function sync-repos
+    set base_dir "$HOME/code"
+    set -l failures
+
+    for dir in $base_dir/*/
+        if test -d "$dir/.git"
+            set repo_name (basename "$dir")
+            echo "Updating $repo_name"
+
+            if not git -C "$dir" pull --ff-only
+                set -a failures $repo_name
+            end
+        end
+    end
+
+    if test (count $failures) -eq 0
+        echo "\nAll repositories updated successfully."
+    else
+        echo "\n===== SUMMARY OF FAILURES ====="
+        for repo in $failures
+            echo "$repo needs manual intervention"
+        end
+    end
+end
+
+function commandline-copy
+    set -l cmd (commandline)
+    if test -n "$cmd"
+        set -l highlighted (echo $cmd | fish_indent --ansi)
+        printf '```ansi\n%s\n```' "$highlighted" | wl-copy
+    end
+    commandline -f repaint
 end

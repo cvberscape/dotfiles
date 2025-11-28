@@ -53,6 +53,10 @@ def tauribuild [] {
   }
 }
 
+def posix [cmd: string] {
+    bash -c $cmd
+}
+
 export-env {
   $env.EDITOR = "nvim"
   $env.ANDROID_HOME = $"($env.HOME)/Android/Sdk"
