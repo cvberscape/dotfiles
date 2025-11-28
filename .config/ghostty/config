@@ -31,7 +31,7 @@ font-feature = -calt
 font-feature = -dlig
 font-feature = -liga
 
-command = /usr/bin/nu
+command = /usr/bin/fish
 
 #
 # # Spacing around the equals sign does not matter.

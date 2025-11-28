@@ -1,39 +1,60 @@
 import json
 import os
+import re
 
-# Paths to pywal colors and starship configuration
 wal_colors_path = os.path.expanduser("~/.cache/wal/colors.json")
 starship_config_path = os.path.expanduser("~/.config/starship.toml")
 
-# Read pywal colors
-with open(wal_colors_path, 'r') as f:
+with open(wal_colors_path, "r") as f:
     colors = json.load(f)
 
-# Extract colors
-bg_color = colors['colors']['color0']
-fg_color = colors['colors']['color7']
-accent_color1 = colors['colors']['color1']
-accent_color2 = colors['colors']['color2']
+bg_color = colors["colors"]["color0"]
+fg_color = colors["colors"]["color7"]
+accent_color1 = colors["colors"]["color1"]
+accent_color2 = colors["colors"]["color2"]
 
-# Define the new starship configuration
-starship_config = f"""
-format="$directory$git_branch$character"
+with open(starship_config_path, "r") as f:
+    config = f.read()
 
-# Prompt symbols 
-[character]
-success_symbol = "[🞈]({fg_color} bold)"
-error_symbol = "[🞈]({accent_color1})"
-vicmd_symbol = "[🞈]({accent_color2})"
+config = re.sub(
+    r'(success_symbol\s*=\s*".*?)\)\(.*?(")', f"\\1)({fg_color} bold)\\2", config
+)
+config = re.sub(
+    r'(error_symbol\s*=\s*".*?)\)\(.*?(")', f"\\1)({accent_color1})\\2", config
+)
+config = re.sub(
+    r'(vimcmd_symbol\s*=\s*".*?)\)\(.*?(")', f"\\1)({accent_color2})\\2", config
+)
 
-[directory]
-format = "[]($style)[(bg:{accent_color1} fg:{accent_color2})$path](bg:{accent_color1} fg:{fg_color})[ ]($style)"
-style = "fg:{accent_color1}"
+config = re.sub(
+    r'(\[directory\]\s*.*?style\s*=\s*").*?(")',
+    f"\\1fg:{accent_color1}\\2",
+    config,
+    flags=re.DOTALL,
+)
 
-[git_branch]
-format = "[]($style)[[ ](bg:{accent_color1} fg:{fg_color} bold)$branch](bg:{accent_color1} fg:{accent_color2})[ ]($style)"
-style = "fg:{accent_color1}"
-"""
+config = re.sub(
+    r'(\[git_branch\]\s*.*?style\s*=\s*").*?(")',
+    f"\\1fg:{accent_color2}\\2",
+    config,
+    flags=re.DOTALL,
+)
 
-# Write the new configuration to starship.toml
-with open(starship_config_path, 'w') as f:
-    f.write(starship_config)
+config = re.sub(
+    r'(\[time\]\s*.*?style\s*=\s*").*?(")',
+    f"\\1fg:{fg_color}\\2",
+    config,
+    flags=re.DOTALL,
+)
+
+config = re.sub(
+    r'(\[battery\]\s*.*?style\s*=\s*").*?(")',
+    f"\\1fg:{accent_color1}\\2",
+    config,
+    flags=re.DOTALL,
+)
+
+with open(starship_config_path, "w") as f:
+    f.write(config)
+
+print("Starship colors updated successfully!")
