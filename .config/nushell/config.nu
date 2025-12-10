@@ -57,6 +57,17 @@ def posix [cmd: string] {
     bash -c $cmd
 }
 
+let nix_profile = ("$env.HOME" | path join ".nix-profile")
+
+if ($nix_profile | path exists) {
+    # System paths remain first
+    $env.PATH = (
+        $env.PATH
+        | append $"($nix_profile)/bin"
+        | append $"($nix_profile)/sbin"
+    )
+}
+
 export-env {
   $env.EDITOR = "nvim"
   $env.ANDROID_HOME = $"($env.HOME)/Android/Sdk"
@@ -218,7 +229,7 @@ def nix-update [] {
 }
 
 # Sync git repos
-def sync-repos [] {
+def gitsync [] {
     let base_dir = ($env.HOME | path join "code")
     mut failures = []
 

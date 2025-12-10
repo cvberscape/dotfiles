@@ -58,7 +58,7 @@
       "format": "{icon} {temperatureC}°C",
       "critical-threshold": 80,
       "format-icons": ["", "", ""],
-      "hwmon-path": "/sys/class/hwmon/hwmon4/temp1_input"
+      "hwmon-path": "/sys/class/hwmon/hwmon3/temp1_input"
     },
     "memory": {
       "format": " {}%",
@@ -77,7 +77,7 @@
       "scroll-step": 0.2
   },
 "battery": {
-    "bat": "BAT0",
+    "bat": "BAT1",
     "interval": 60,
     "states": {
         "warning": 30,

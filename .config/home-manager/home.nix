@@ -8,9 +8,15 @@
 
   nixpkgs.config.allowUnfree = true;
 
+  systemd.user.enable = false;
+
   nix = {
     package = pkgs.nix;
-    settings.experimental-features = [ "nix-command" "flakes" ];
+        settings = {
+      build-users-group = "";
+      sandbox = false;
+      experimental-features = [ "nix-command" "flakes" ];
+    };
   };
 
   home.packages = with pkgs; [
@@ -23,14 +29,18 @@
     heroic
     catppuccin-cursors.mochaSky
     code-cursor
+    opencode
     claude-code
-    #carapace
+    carapace
   ];
 
-  home.file = {
+    home.sessionVariables = {
+    XCURSOR_THEME = "catppuccin-mocha-sky-cursors";
+    XCURSOR_SIZE = "24";
+    XCURSOR_PATH = "${config.home.profileDirectory}/share/icons:/usr/share/icons:${config.home.homeDirectory}/.icons";
   };
 
-  home.sessionVariables = {
+  home.file = {
   };
 
   programs.home-manager.enable = true;

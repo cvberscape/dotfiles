@@ -16,7 +16,7 @@ stow -t $env.HOME .
 install packages from store
 
 ```nu
-open store | ^yay -S --needed -
+open store | ^paru -S --needed -
 
 ```
 
@@ -25,5 +25,5 @@ open store | ^yay -S --needed -
 store file lists all explicitly installed packages via yay
 
 ```nu
-yay -Qeq | save -f store
+paru -Qeq | save -f store
 ```

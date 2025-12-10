@@ -20,6 +20,7 @@ if status --is-interactive
     set -gx PATH $PATH $ANDROID_HOME/emulator $ANDROID_HOME/platform-tools
     set -gx JAVA_HOME /usr/lib/jvm/java-17-openjdk
     set -gx PATH $JAVA_HOME/bin $PATH
+    #  set -gx PATH $HOME/.nix-profile/bin $HOME/.nix-profile/sbin $PATH
 
     bind -M default \cy commandline-copy # normal mode
     bind -M insert \cy commandline-copy # insert mode

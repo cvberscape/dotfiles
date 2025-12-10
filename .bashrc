@@ -35,7 +35,5 @@ export PATH=$JAVA_HOME/bin:$PATH
 
 eval "$(starship init bash)"
 eval "$(zoxide init bash)"
-
+#. "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
 PS1='[\u@\h \W]\$ '
-
-fastfetch
