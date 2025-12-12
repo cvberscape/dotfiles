@@ -238,7 +238,16 @@ def gitsync [] {
         if ($git_path | path exists) {
             let repo_name = ($dir.name | path basename)
             print $"Updating ($repo_name)"
+
             let result = (git -C $dir.name pull --ff-only | complete)
+
+            if not ($result.stdout | is-empty) {
+                print $result.stdout
+            }
+            if not ($result.stderr | is-empty) {
+                print $result.stderr
+            }
+
             if $result.exit_code != 0 {
                 $failures ++= [$repo_name]
             }
