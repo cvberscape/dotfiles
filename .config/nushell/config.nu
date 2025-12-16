@@ -34,11 +34,14 @@ alias vim = nvim
 alias py = python
 alias code = cursor
 
-def --wrapped sudo [...rest: string] {
-    let new_args = ($rest | each {|arg| 
-        if $arg == "vim" { "nvim" } else { $arg }
-    })
-    ^sudo ...$new_args
+def "nord c" [country: string] {
+    sudo systemctl start nordvpnd 
+    nordvpn c ($country)
+}
+
+def "nord d" [] {
+    nordvpn d
+    sudo systemctl stop nordvpnd
 }
 
 def tauri [] {
@@ -57,17 +60,6 @@ def posix [cmd: string] {
     bash -c $cmd
 }
 
-let nix_profile = ("$env.HOME" | path join ".nix-profile")
-
-if ($nix_profile | path exists) {
-    # System paths remain first
-    $env.PATH = (
-        $env.PATH
-        | append $"($nix_profile)/bin"
-        | append $"($nix_profile)/sbin"
-    )
-}
-
 export-env {
   $env.EDITOR = "nvim"
   $env.ANDROID_HOME = $"($env.HOME)/Android/Sdk"
@@ -80,14 +72,7 @@ export-env {
   ] | uniq | str join (char esep))
 }
 
-
-# prompt and external integrations
-#use ~/.cache/starship/init.nu
-#use ~/.zoxide.nu
-
-# optional visual fetch on shell start
 fastfetch
-
 
 
 $env.config.show_banner = false

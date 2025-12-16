@@ -32,6 +32,7 @@
     opencode
     claude-code
     carapace
+    helix-db
   ];
 
     home.sessionVariables = {
