@@ -107,6 +107,7 @@ exec-once = gsettings set org.gnome.desktop.interface color-scheme "prefer-$THEM
 EOF
 
 killall -SIGUSR2 ghostty
+killall -SIGUSR1 kitty
 
 # set obsidian theme
 COLORS_JSON="$HOME/.cache/wal/colors.json"

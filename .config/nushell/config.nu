@@ -60,6 +60,30 @@ def posix [cmd: string] {
     bash -c $cmd
 }
 
+let nix_profile = ($env.HOME | path join ".nix-profile")
+
+if ($nix_profile | path exists) {
+    # Keep system PATH first
+    $env.PATH = (
+        $env.PATH
+        | append $"($nix_profile)/bin"
+        | append $"($nix_profile)/sbin"
+    )
+
+    # Add only the Nix lib dir for libstdc++.so.6, after system libs
+    let nix_gcc_lib = (glob $"($nix_profile)/lib/libstdc++.so.6" | first | path dirname)
+
+    if ($nix_gcc_lib != null) {
+        $env.LD_LIBRARY_PATH = (
+            (if ($env.LD_LIBRARY_PATH? != null) { $env.LD_LIBRARY_PATH } else { "" })
+            | split row (char esep)
+            | append $nix_gcc_lib
+            | uniq
+            | str join (char esep)
+        )
+    }
+}
+
 export-env {
   $env.EDITOR = "nvim"
   $env.ANDROID_HOME = $"($env.HOME)/Android/Sdk"
@@ -257,8 +281,7 @@ do --env {
 
     let jj_workspace_root = try {
       jj workspace root err> $null_device
-    } catch {
-      ""
+    } catch { ""
     }
 
     let hostname = if ($env.SSH_CONNECTION? | is-not-empty) {
