@@ -118,6 +118,11 @@
       "format": "\u001b[36m└──────────────────────────────────────────┘",
     },
     {
+      "type": "battery",
+      "key": "   Battery",
+      "keyColor": "yellow",
+    },
+    {
       "type": "datetime",
       "key": "   Time",
       "keyColor": "yellow",

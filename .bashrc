@@ -21,6 +21,7 @@ alias tauri='WEBKIT_DISABLE_DMABUF_RENDERER=1 bun tauri dev'
 alias tauribuild='bun tauri build --no-bundle'
 alias cd="z"
 alias android="bun expo run:android"
+alias hy="start-hyprland"
 
 #export PATH="$HOME/.local/bin:$PATH"
 #export WATCHMAN_NO_SPAWN=1

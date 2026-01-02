@@ -12,7 +12,7 @@
 
   nix = {
     package = pkgs.nix;
-        settings = {
+      settings = {
       build-users-group = "";
       sandbox = false;
       experimental-features = [ "nix-command" "flakes" ];
@@ -22,17 +22,17 @@
   home.packages = with pkgs; [
     android-studio
     brave 
-    bun 
     stdenv.cc.cc.lib
     watchman
     vesktop
     heroic
     catppuccin-cursors.mochaSky
     code-cursor
-    opencode
     claude-code
     carapace
     helix-db
+    bitwarden-desktop
+    bitwarden-cli
   ];
 
     home.sessionVariables = {
